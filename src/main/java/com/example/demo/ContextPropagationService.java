@@ -43,7 +43,11 @@ public class ContextPropagationService {
             .onErrorResume(e -> Mono.empty())
             .doOnSuccess(resp -> log.info("[testSubscribeWithReactiveWebClient] doOnSuccess triggered with resp={}",
                 resp))
+            // need this explicitly for context propagation
+            .contextCapture()
             .subscribe();
+        // contextCapture() only works for upstream but not downstream logs
+        //            .subscribe(s -> log.info("[testSubscribeWithWebClient] finished and received value={}", s));
     }
 
     private Mono<String> baseMethod(Function<String, Mono<? extends String>> someWork) {
