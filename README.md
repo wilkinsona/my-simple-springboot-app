@@ -21,7 +21,9 @@ docker-compose exec app jcmd 6 Thread.print > threaddump.txt
 curl 'http://localhost:7081/actuator/threaddump' -i -X GET -H 'Accept: text/plain'
 ```
 
-# Bug: Application hangs on startup after upgrading to Spring Boot 3.2.x
+# Bug
+Application hangs on startup after upgrading to Spring Boot 3.2.x.
+
 ## Steps to Reproduce
 - run application using docker
 
