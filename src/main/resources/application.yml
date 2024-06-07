@@ -1,0 +1,23 @@
+spring:
+  data:
+    redis: # Redis Properties
+      host: localhost
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 10
+      password:
+      port: 6381
+      ssl:
+        enabled: false
+      timeout: 3s
+logging:
+  level:
+    root: info
+
+# disable metrics export resolves the issue
+#management:
+#  defaults:
+#    metrics:
+#      export:
+#        enabled: false
