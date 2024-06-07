@@ -12,3 +12,20 @@ docker-compose exec app jcmd 6 Thread.print > threaddump.txt
 ```shell
 curl 'http://localhost:7081/actuator/threaddump' -i -X GET -H 'Accept: text/plain'
 ```
+
+# Bug: Application hangs on startup after upgrading to Spring Boot 3.2.x
+## Steps to Reproduce
+- run application
+
+## Expected behaviour
+- observe that application hangs indefinitely for the creation of `ReactiveRedisMessageListenerContainer` which is seemingly waiting for `ReactiveRedisConnectionFactory` to provision `ReactiveConnection`
+
+## Actual Behaviour
+
+## Related Issues
+- https://github.com/spring-projects/spring-boot/issues/39240
+- https://github.com/spring-projects/spring-data-redis/issues/2814
+
+## Known Workarounds
+1. use `@Lazy` for lazy initialization of `ReactiveRedisMessageListenerContainer`
+2. manually inject `MicrometerOptions` as a bean the same way as how LettuceMetricsAutoConfiguration does it
