@@ -1,0 +1,282 @@
+6:
+2024-06-07 08:11:58
+Full thread dump OpenJDK 64-Bit Server VM (17.0.11+9 mixed mode, sharing):
+
+Threads class SMR info:
+_java_thread_list=0x0000ffff108d7990, length=19, elements={
+0x0000ffff88024bc0, 0x0000ffff88090e20, 0x0000ffff880922a0, 0x0000ffff880976f0,
+0x0000ffff88098b40, 0x0000ffff88099f60, 0x0000ffff8809b3a0, 0x0000ffff8809cd10,
+0x0000ffff8809e270, 0x0000ffff880a76f0, 0x0000ffff880af6a0, 0x0000ffff880b23a0,
+0x0000ffff881097d0, 0x0000ffff891b80e0, 0x0000ffff0c004f30, 0x0000ffff8918f7f0,
+0x0000ffff892b8030, 0x0000ffff89580ee0, 0x0000fffefc001f60
+}
+
+"main" #1 prio=5 os_prio=0 cpu=2293.06ms elapsed=66.87s tid=0x0000ffff88024bc0 nid=0x6d waiting on condition  [0x0000ffff8d3da000]
+   java.lang.Thread.State: WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@17.0.11/Native Method)
+	- parking to wait for  <0x00000000fa670178> (a java.util.concurrent.CompletableFuture$Signaller)
+	at java.util.concurrent.locks.LockSupport.park(java.base@17.0.11/LockSupport.java:211)
+	at java.util.concurrent.CompletableFuture$Signaller.block(java.base@17.0.11/CompletableFuture.java:1864)
+	at java.util.concurrent.ForkJoinPool.unmanagedBlock(java.base@17.0.11/ForkJoinPool.java:3465)
+	at java.util.concurrent.ForkJoinPool.managedBlock(java.base@17.0.11/ForkJoinPool.java:3436)
+	at java.util.concurrent.CompletableFuture.waitingGet(java.base@17.0.11/CompletableFuture.java:1898)
+	at java.util.concurrent.CompletableFuture.get(java.base@17.0.11/CompletableFuture.java:2072)
+	at io.lettuce.core.DefaultConnectionFuture.get(DefaultConnectionFuture.java:69)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:345)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:215)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:112)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider$$Lambda$1006/0x000000b0015cadd0.get(Unknown Source)
+	at java.util.Optional.orElseGet(java.base@17.0.11/Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:112)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.lambda$getConnection$0(LettucePoolingConnectionProvider.java:93)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider$$Lambda$980/0x000000b0015c1d40.get(Unknown Source)
+	at io.lettuce.core.support.ConnectionPoolSupport$RedisPooledObjectFactory.create(ConnectionPoolSupport.java:211)
+	at io.lettuce.core.support.ConnectionPoolSupport$RedisPooledObjectFactory.create(ConnectionPoolSupport.java:201)
+	at org.apache.commons.pool2.BasePooledObjectFactory.makeObject(BasePooledObjectFactory.java:71)
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:566)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:306)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:233)
+	at io.lettuce.core.support.ConnectionPoolSupport$1.borrowObject(ConnectionPoolSupport.java:122)
+	at io.lettuce.core.support.ConnectionPoolSupport$1.borrowObject(ConnectionPoolSupport.java:117)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.getConnection(LettucePoolingConnectionProvider.java:99)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1724)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1528)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.lambda$getConnection$0(LettuceConnectionFactory.java:1508)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection$$Lambda$978/0x000000b0015c18d0.get(Unknown Source)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.doInLock(LettuceConnectionFactory.java:1469)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1505)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedReactiveConnection(LettuceConnectionFactory.java:1216)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getReactiveConnection(LettuceConnectionFactory.java:1091)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getReactiveConnection(LettuceConnectionFactory.java:118)
+	at org.springframework.data.redis.listener.ReactiveRedisMessageListenerContainer.<init>(ReactiveRedisMessageListenerContainer.java:88)
+	at com.example.demo.RedisConfig.redisMessageListenerContainer(RedisConfig.java:18)
+	at com.example.demo.RedisConfig$$SpringCGLIB$$0.CGLIB$redisMessageListenerContainer$0(<generated>)
+	at com.example.demo.RedisConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:339)
+	at com.example.demo.RedisConfig$$SpringCGLIB$$0.redisMessageListenerContainer(<generated>)
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(java.base@17.0.11/Native Method)
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(java.base@17.0.11/NativeMethodAccessorImpl.java:77)
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(java.base@17.0.11/DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(java.base@17.0.11/Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$$Lambda$388/0x000000b00125c0f0.getObject(Unknown Source)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	- locked <0x00000000f83f76b8> (a java.util.concurrent.ConcurrentHashMap)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.example.demo.DemoApplication.main(DemoApplication.java:10)
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(java.base@17.0.11/Native Method)
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(java.base@17.0.11/NativeMethodAccessorImpl.java:77)
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(java.base@17.0.11/DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(java.base@17.0.11/Method.java:568)
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91)
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53)
+	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58)
+
+"Reference Handler" #2 daemon prio=10 os_prio=0 cpu=3.57ms elapsed=66.85s tid=0x0000ffff88090e20 nid=0x74 waiting on condition  [0x0000ffff70901000]
+   java.lang.Thread.State: RUNNABLE
+	at java.lang.ref.Reference.waitForReferencePendingList(java.base@17.0.11/Native Method)
+	at java.lang.ref.Reference.processPendingReferences(java.base@17.0.11/Reference.java:253)
+	at java.lang.ref.Reference$ReferenceHandler.run(java.base@17.0.11/Reference.java:215)
+
+"Finalizer" #3 daemon prio=8 os_prio=0 cpu=0.31ms elapsed=66.85s tid=0x0000ffff880922a0 nid=0x75 in Object.wait()  [0x0000ffff70703000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@17.0.11/Native Method)
+	- waiting on <0x00000000f8000af8> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(java.base@17.0.11/ReferenceQueue.java:155)
+	- locked <0x00000000f8000af8> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(java.base@17.0.11/ReferenceQueue.java:176)
+	at java.lang.ref.Finalizer$FinalizerThread.run(java.base@17.0.11/Finalizer.java:172)
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=0 cpu=0.06ms elapsed=66.85s tid=0x0000ffff880976f0 nid=0x76 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Attach Listener" #5 daemon prio=5 os_prio=0 cpu=0.80ms elapsed=66.85s tid=0x0000ffff88098b40 nid=0x77 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Service Thread" #6 daemon prio=9 os_prio=0 cpu=1.64ms elapsed=66.85s tid=0x0000ffff88099f60 nid=0x78 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Monitor Deflation Thread" #7 daemon prio=9 os_prio=0 cpu=6.16ms elapsed=66.85s tid=0x0000ffff8809b3a0 nid=0x79 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #8 daemon prio=9 os_prio=0 cpu=2454.13ms elapsed=66.85s tid=0x0000ffff8809cd10 nid=0x7a waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"C1 CompilerThread0" #10 daemon prio=9 os_prio=0 cpu=856.37ms elapsed=66.85s tid=0x0000ffff8809e270 nid=0x7b waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"Sweeper thread" #11 daemon prio=9 os_prio=0 cpu=14.70ms elapsed=66.84s tid=0x0000ffff880a76f0 nid=0x7c runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Notification Thread" #12 daemon prio=9 os_prio=0 cpu=0.10ms elapsed=66.84s tid=0x0000ffff880af6a0 nid=0x7d runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Common-Cleaner" #13 daemon prio=8 os_prio=0 cpu=1.89ms elapsed=66.84s tid=0x0000ffff880b23a0 nid=0x7f in Object.wait()  [0x0000ffff60ffe000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@17.0.11/Native Method)
+	- waiting on <0x00000000f8000d08> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(java.base@17.0.11/ReferenceQueue.java:155)
+	- locked <0x00000000f8000d08> (a java.lang.ref.ReferenceQueue$Lock)
+	at jdk.internal.ref.CleanerImpl.run(java.base@17.0.11/CleanerImpl.java:140)
+	at java.lang.Thread.run(java.base@17.0.11/Thread.java:840)
+	at jdk.internal.misc.InnocuousThread.run(java.base@17.0.11/InnocuousThread.java:162)
+
+"Cleaner-0" #14 daemon prio=5 os_prio=0 cpu=4.26ms elapsed=66.78s tid=0x0000ffff881097d0 nid=0x80 in Object.wait()  [0x0000ffff60d1e000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@17.0.11/Native Method)
+	- waiting on <0x00000000f8000ec8> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(java.base@17.0.11/ReferenceQueue.java:155)
+	- locked <0x00000000f8000ec8> (a java.lang.ref.ReferenceQueue$Lock)
+	at jdk.internal.ref.CleanerImpl.run(java.base@17.0.11/CleanerImpl.java:140)
+	at java.lang.Thread.run(java.base@17.0.11/Thread.java:840)
+	at jdk.internal.misc.InnocuousThread.run(java.base@17.0.11/InnocuousThread.java:162)
+
+"Catalina-utility-1" #19 prio=1 os_prio=0 cpu=10.12ms elapsed=63.50s tid=0x0000ffff891b80e0 nid=0x87 waiting on condition  [0x0000ffff602f7000]
+   java.lang.Thread.State: WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@17.0.11/Native Method)
+	- parking to wait for  <0x00000000f8eda400> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(java.base@17.0.11/LockSupport.java:341)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(java.base@17.0.11/AbstractQueuedSynchronizer.java:506)
+	at java.util.concurrent.ForkJoinPool.unmanagedBlock(java.base@17.0.11/ForkJoinPool.java:3465)
+	at java.util.concurrent.ForkJoinPool.managedBlock(java.base@17.0.11/ForkJoinPool.java:3436)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(java.base@17.0.11/AbstractQueuedSynchronizer.java:1625)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(java.base@17.0.11/ScheduledThreadPoolExecutor.java:1177)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(java.base@17.0.11/ScheduledThreadPoolExecutor.java:899)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(java.base@17.0.11/ThreadPoolExecutor.java:1062)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(java.base@17.0.11/ThreadPoolExecutor.java:1122)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(java.base@17.0.11/ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.lang.Thread.run(java.base@17.0.11/Thread.java:840)
+
+"Catalina-utility-2" #20 prio=1 os_prio=0 cpu=2.92ms elapsed=63.50s tid=0x0000ffff0c004f30 nid=0x88 waiting on condition  [0x0000ffff07ffd000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@17.0.11/Native Method)
+	- parking to wait for  <0x00000000f8eda400> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.parkNanos(java.base@17.0.11/LockSupport.java:252)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(java.base@17.0.11/AbstractQueuedSynchronizer.java:1674)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(java.base@17.0.11/ScheduledThreadPoolExecutor.java:1182)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(java.base@17.0.11/ScheduledThreadPoolExecutor.java:899)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(java.base@17.0.11/ThreadPoolExecutor.java:1062)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(java.base@17.0.11/ThreadPoolExecutor.java:1122)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(java.base@17.0.11/ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.lang.Thread.run(java.base@17.0.11/Thread.java:840)
+
+"container-0" #21 prio=5 os_prio=0 cpu=0.38ms elapsed=63.49s tid=0x0000ffff8918f7f0 nid=0x89 waiting on condition  [0x0000ffff07e00000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(java.base@17.0.11/Native Method)
+	at org.apache.catalina.core.StandardServer.await(StandardServer.java:524)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer$1.run(TomcatWebServer.java:217)
+
+"lettuce-timer-3-1" #22 daemon prio=5 os_prio=0 cpu=36.14ms elapsed=63.21s tid=0x0000ffff892b8030 nid=0x8a waiting on condition  [0x0000ffff07c02000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(java.base@17.0.11/Native Method)
+	at io.netty.util.HashedWheelTimer$Worker.waitForNextTick(HashedWheelTimer.java:591)
+	at io.netty.util.HashedWheelTimer$Worker.run(HashedWheelTimer.java:487)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(java.base@17.0.11/Thread.java:840)
+
+"lettuce-nioEventLoop-4-1" #23 daemon prio=5 os_prio=0 cpu=44.48ms elapsed=62.70s tid=0x0000ffff89580ee0 nid=0x8b waiting for monitor entry  [0x0000ffff07a02000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getSingletonFactoryBeanForTypeCheck(AbstractAutowireCapableBeanFactory.java:975)
+	- waiting to lock <0x00000000f83f76b8> (a java.util.concurrent.ConcurrentHashMap)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:891)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:663)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:575)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:542)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1637)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1397)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$DependencyObjectProvider.getObject(DefaultListableBeanFactory.java:2070)
+	at org.springframework.boot.actuate.autoconfigure.tracing.prometheus.PrometheusExemplarsAutoConfiguration$LazyTracingSpanContextSupplier$$Lambda$809/0x000000b0014b2de8.get(Unknown Source)
+	at org.springframework.util.function.SingletonSupplier.get(SingletonSupplier.java:106)
+	at org.springframework.util.function.SingletonSupplier.obtain(SingletonSupplier.java:127)
+	at org.springframework.boot.actuate.autoconfigure.tracing.prometheus.PrometheusExemplarsAutoConfiguration$LazyTracingSpanContextSupplier.currentSpan(PrometheusExemplarsAutoConfiguration.java:89)
+	at org.springframework.boot.actuate.autoconfigure.tracing.prometheus.PrometheusExemplarsAutoConfiguration$LazyTracingSpanContextSupplier.isSampled(PrometheusExemplarsAutoConfiguration.java:80)
+	at io.prometheus.client.exemplars.DefaultExemplarSampler.doSample(DefaultExemplarSampler.java:46)
+	at io.prometheus.client.exemplars.DefaultExemplarSampler.sample(DefaultExemplarSampler.java:34)
+	at io.micrometer.prometheus.PrometheusTimer.updateLastExemplar(PrometheusTimer.java:128)
+	at io.micrometer.prometheus.PrometheusTimer.recordNonNegative(PrometheusTimer.java:118)
+	at io.micrometer.core.instrument.AbstractTimer.record(AbstractTimer.java:259)
+	at io.lettuce.core.metrics.MicrometerCommandLatencyRecorder.recordCommandLatency(MicrometerCommandLatencyRecorder.java:91)
+	at io.lettuce.core.metrics.MicrometerCommandLatencyRecorder.recordCommandLatency(MicrometerCommandLatencyRecorder.java:76)
+	at io.lettuce.core.protocol.CommandHandler.recordLatency(CommandHandler.java:912)
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:769)
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:657)
+	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:597)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1407)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:918)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(java.base@17.0.11/Thread.java:840)
+
+"lettuce-eventExecutorLoop-1-1" #24 daemon prio=5 os_prio=0 cpu=1.71ms elapsed=59.61s tid=0x0000fffefc001f60 nid=0x8c waiting on condition  [0x0000ffff07404000]
+   java.lang.Thread.State: WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@17.0.11/Native Method)
+	- parking to wait for  <0x00000000f90dbe70> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(java.base@17.0.11/LockSupport.java:341)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(java.base@17.0.11/AbstractQueuedSynchronizer.java:506)
+	at java.util.concurrent.ForkJoinPool.unmanagedBlock(java.base@17.0.11/ForkJoinPool.java:3465)
+	at java.util.concurrent.ForkJoinPool.managedBlock(java.base@17.0.11/ForkJoinPool.java:3436)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(java.base@17.0.11/AbstractQueuedSynchronizer.java:1625)
+	at java.util.concurrent.LinkedBlockingQueue.take(java.base@17.0.11/LinkedBlockingQueue.java:435)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.takeTask(SingleThreadEventExecutor.java:243)
+	at io.netty.util.concurrent.DefaultEventExecutor.run(DefaultEventExecutor.java:64)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(java.base@17.0.11/Thread.java:840)
+
+"VM Thread" os_prio=0 cpu=41.22ms elapsed=66.85s tid=0x0000ffff8808ce70 nid=0x73 runnable  
+
+"GC Thread#0" os_prio=0 cpu=57.30ms elapsed=66.87s tid=0x0000ffff88046f00 nid=0x6e runnable  
+
+"GC Thread#1" os_prio=0 cpu=45.82ms elapsed=66.75s tid=0x0000ffff50004d40 nid=0x81 runnable  
+
+"GC Thread#2" os_prio=0 cpu=41.87ms elapsed=66.13s tid=0x0000ffff50009b60 nid=0x83 runnable  
+
+"GC Thread#3" os_prio=0 cpu=47.67ms elapsed=65.97s tid=0x0000ffff5000c5a0 nid=0x84 runnable  
+
+"G1 Main Marker" os_prio=0 cpu=2.04ms elapsed=66.87s tid=0x0000ffff88049390 nid=0x6f runnable  
+
+"G1 Conc#0" os_prio=0 cpu=199.34ms elapsed=66.87s tid=0x0000ffff8804a310 nid=0x70 runnable  
+
+"G1 Refine#0" os_prio=0 cpu=0.19ms elapsed=66.87s tid=0x0000ffff880615a0 nid=0x71 runnable  
+
+"G1 Service" os_prio=0 cpu=9.42ms elapsed=66.87s tid=0x0000ffff880624b0 nid=0x72 runnable  
+
+"VM Periodic Task Thread" os_prio=0 cpu=32.90ms elapsed=66.84s tid=0x0000ffff880b1080 nid=0x7e waiting on condition  
+
+JNI global refs: 31, weak refs: 0
+
