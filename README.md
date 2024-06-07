@@ -32,6 +32,7 @@ Application hangs on startup after upgrading to Spring Boot 3.2.x.
 
 ## Actual Behaviour
 - observe that application hangs indefinitely for the creation of `ReactiveRedisMessageListenerContainer` which is seemingly waiting for `ReactiveRedisConnectionFactory` to provision `ReactiveConnection`
+- [thread dump captured](./threaddump.txt)
 
 ## Related Issues
 - https://github.com/spring-projects/spring-boot/issues/39240
