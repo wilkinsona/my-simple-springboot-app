@@ -9,7 +9,8 @@ import org.springframework.data.redis.listener.ReactiveRedisMessageListenerConta
 public class RedisConfig {
     Logger logger = LoggerFactory.getLogger(RedisConfig.class);
 
-    // Commenting out this allows application to start and reactive redis client still works
+    // Lazy initialization allows application to start and function properly
+    // @Lazy
     @Bean
     ReactiveRedisMessageListenerContainer redisMessageListenerContainer(
         ReactiveRedisConnectionFactory reactiveRedisConnectionFactory) {

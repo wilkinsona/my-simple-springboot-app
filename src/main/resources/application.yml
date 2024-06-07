@@ -21,3 +21,5 @@ logging:
 #    metrics:
 #      export:
 #        enabled: false
+server:
+  port: 7080
