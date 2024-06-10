@@ -1,37 +1,25 @@
 # How to Run
 ```shell
-# spin up required containers
-docker-compose up --build --force-recreate app
-
-# test APIs
-curl -v localhost:7080/hget-reactive
-
-curl -v localhost:7080/hset-reactive
-curl -v localhost:7080/hget-reactive
-
+./gradlew bootRun
 ```
 
 # Thread Dump
 ## Use CLI
 ```shell
-docker-compose exec app jcmd 6 Thread.print > threaddump.txt
-```
-## Use Actuator Endpoint
-```shell
-curl 'http://localhost:7081/actuator/threaddump' -i -X GET -H 'Accept: text/plain'
+kill -3 <pid>
 ```
 
 # Bug
 Application hangs on startup after upgrading to Spring Boot 3.2.x.
 
 ## Steps to Reproduce
-- run application using docker
+- Run application
 
 ## Expected behaviour
-- application should start and able to serve traffic
+- Application should start and able to serve traffic
 
 ## Actual Behaviour
-- observe that application hangs indefinitely for the creation of `ReactiveRedisMessageListenerContainer` which is seemingly waiting for `ReactiveRedisConnectionFactory` to provision `ReactiveConnection`
+- Observe that application hangs indefinitely for the creation of `ReactiveRedisMessageListenerContainer` which is seemingly waiting for `ReactiveRedisConnectionFactory` to provision `ReactiveConnection`
 - [thread dump captured](./threaddump.txt)
 
 ## Related Issues
