@@ -7,3 +7,7 @@ services:
       - 6222:6379
     hostname: asp-redis
     command: redis-server --port 6379 --enable-debug-command local
+  test-zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - '9411'
